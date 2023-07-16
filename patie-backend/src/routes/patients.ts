@@ -40,4 +40,10 @@ patientsRouter.post("/", (req, res) => {
 
 
 });
+
+patientsRouter.get("/:id",(req,res)=>{
+  res.send(patientService.findPatient(req.params.id))
+})
+
+
 export default patientsRouter;

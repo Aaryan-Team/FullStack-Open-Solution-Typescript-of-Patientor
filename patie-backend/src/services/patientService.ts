@@ -13,6 +13,18 @@ const patients: Array<NonSensitivePatientEntry> = patientEntries.map(
     })
 );
 
+const allPatientsData: Array<PatientEntry> = patientEntries.map(
+  ({ id, name, dateOfBirth, gender, occupation,ssn,entries }) => ({
+    id,
+    name,
+    dateOfBirth,
+    gender,
+    occupation,
+    ssn,
+    entries
+  })
+);
+
 const addPatient = (entry:NewPatientEntry):PatientEntry => {
   const newPatient = {
     id:uuid(),
@@ -26,11 +38,19 @@ const addPatient = (entry:NewPatientEntry):PatientEntry => {
 
 const getAll = (): Array<NonSensitivePatientEntry> => {
     return patients;
-  };
+};
+
+const findPatient =(id:string):PatientEntry | undefined=>{
+
+  return allPatientsData.find((patient)=>patient.id === id)
+
+}
+
   
   export default {
     getAll,
-    addPatient
+    addPatient,
+    findPatient
   };
   
 
